@@ -12,9 +12,8 @@ body {
   display: flex;
   place-content: center flex-start;
   align-items: center;
-  background-image: url("./therapibg.png");
+  background-image: url("../assets/therapibg.png");
   background-size: cover;
-
   flex-flow: column nowrap;
   gap: 10px;
   height: 100vh;
@@ -60,21 +59,15 @@ body {
   width: 100%;
   font-weight: 700;
   font-size: 72px;
-  /*     font-family: CalSans; */
   letter-spacing: -4px;
   line-height: 1.2em;
   text-align: center;
   margin: 0;
-  /*   box-shadow:5px 5px #62c846; */
-  /*     background: radial-gradient(#96ff94 45%,#42b342, #158a47);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text; */
   background: linear-gradient(to right, #118d1f, #b0fcb8, #118d1f);
   -webkit-text-fill-color: transparent;
   background-clip: text;
   background-size: 90% 100%;
   animation: gradient 10s ease-in-out infinite;
-  /*   animation-timing-function:; */
 }
 
 @keyframes gradient {
@@ -91,48 +84,6 @@ body {
     /* 		background-position: 0% 0%; */
   }
 }
-
-/*
-@keyframes gradient{
-  0%{
-    background: linear-gradient(to right, #f32170,
-                    #ff6b08, #cf23cf, #eedd44);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-    background-position-x:0%;
-  }
-
-  25%{
-    background: linear-gradient(to right, #ff6b08,
-                                #cf23cf, #eedd44, #f32170);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-    background-position-x:25%;
-  }
-  50%{
-    background: linear-gradient(to right,
-                     #cf23cf, #eedd44, #f32170,#ff6b08);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-    background-position-x:50%;
-  }
-  75%{
-    background: linear-gradient(to right,
-                      #eedd44, #f32170,#ff6b08,#cf23cf);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-    background-position-x:75%;
-  }
-  100%{
-    background: linear-gradient(to right, #f32170,
-                    #ff6b08, #cf23cf, #eedd44);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-    background-position-x:100%;
-    background-position-x:0%;
-  }
-}
-*/
 
 .header-subtitle h2 {
   font-size: 20px;
