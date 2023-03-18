@@ -6,14 +6,16 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Manrope", sans-serif;
+  overflow: hidden;
 }
 
 .root {
   display: flex;
   place-content: center flex-start;
   align-items: center;
-  background-image: url("../assets/therapibg.png");
+  background-image: url("../assets/therapybg.png");
   background-size: cover;
+
   flex-flow: column nowrap;
   gap: 10px;
   height: 100vh;
@@ -33,12 +35,10 @@ body {
   flex: 0 0 auto;
   flex-flow: column nowrap;
   gap: 10px;
-  height: fit-content;
-  max-width: 975px;
   overflow: auto;
   padding: 50px;
   position: relative;
-  width: auto;
+  width: 70%;
   gap: 64px;
 }
 
@@ -50,6 +50,16 @@ body {
   color: #fff;
 }
 
+.header-subtitle {
+  /*     height:40px; */
+  width: 100%;
+  font-size: 1.1em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .header-title {
   display: flex;
   gap: 12px;
@@ -59,15 +69,21 @@ body {
   width: 100%;
   font-weight: 700;
   font-size: 72px;
+  /*     font-family: CalSans; */
   letter-spacing: -4px;
   line-height: 1.2em;
   text-align: center;
   margin: 0;
+  /*   box-shadow:5px 5px #62c846; */
+  /*     background: radial-gradient(#96ff94 45%,#42b342, #158a47);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; */
   background: linear-gradient(to right, #118d1f, #b0fcb8, #118d1f);
   -webkit-text-fill-color: transparent;
   background-clip: text;
   background-size: 90% 100%;
   animation: gradient 10s ease-in-out infinite;
+  /*   animation-timing-function:; */
 }
 
 @keyframes gradient {
@@ -85,27 +101,62 @@ body {
   }
 }
 
-.header-subtitle h2 {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.4em;
-  color: rgba(255, 255, 255, 0.75);
+/*
+@keyframes gradient{
+  0%{
+    background: linear-gradient(to right, #f32170,
+                    #ff6b08, #cf23cf, #eedd44);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+    background-position-x:0%;
+  }
+
+  25%{
+    background: linear-gradient(to right, #ff6b08,
+                                #cf23cf, #eedd44, #f32170);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+    background-position-x:25%;
+  }
+  50%{
+    background: linear-gradient(to right,
+                     #cf23cf, #eedd44, #f32170,#ff6b08);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+    background-position-x:50%;
+  }
+  75%{
+    background: linear-gradient(to right,
+                      #eedd44, #f32170,#ff6b08,#cf23cf);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+    background-position-x:75%;
+  }
+  100%{
+    background: linear-gradient(to right, #f32170,
+                    #ff6b08, #cf23cf, #eedd44);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+    background-position-x:100%;
+    background-position-x:0%;
+  }
 }
+*/
 
 .prompt-container {
-  place-content: flex-end center;
+  /*     place-content: flex-end center; */
   /*     align-items: space-between; */
   display: flex;
-  flex: 0 0 auto;
+  /*     flex: 0 0 auto; */
   flex-flow: column nowrap;
   justify-content: space-around;
   align-items: center;
   gap: 16px;
   height: min-content;
-  height: 250px;
+  /*     height:250px; */
   padding: 0px;
-  width: min-content;
+  width: 100%;
+  /*     width: 60% !important; */
 }
 
 .prompt-box {
@@ -127,8 +178,8 @@ body {
   overflow: hidden;
   padding: 20px;
   position: relative;
-  width: 610px;
   max-width: 1200px;
+  min-width: 610px;
   will-change: transform;
   overflow: auto;
   outline: none;
@@ -404,7 +455,7 @@ textarea {
 .output-content p {
   text-align: center;
   white-space: pre-line;
-  color: rgba(255, 255, 255, 0.5);
+  color: #fff;
 }
 
 @media (min-width: 810px) and (max-width: 1199px) {
@@ -549,10 +600,6 @@ textarea {
   width: 100%;
 }
 
-.logo {
-  background-image: url("../assets/logo.png");
-}
-
 .container span {
   font-size: 2.5em;
 }
@@ -663,6 +710,14 @@ textarea {
 }
 
 .wrapper {
+  min-width: 80%;
+  height: 100px;
+  align-items: center;
+  /*   justify-content:center; */
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5em;
+  font-weight: 200;
+  color: white;
   display: flex;
 }
 
@@ -712,4 +767,14 @@ textarea {
   100% {
     left: 0;
   }
+}
+
+.Typewriter {
+  font-size: 1.5em;
+  padding: 50px 0px;
+  padding-left: 20%;
+  /*   display:flex; */
+  /*   flex-direction:column;
+  justify-content:center; */
+  height: 20px;
 }

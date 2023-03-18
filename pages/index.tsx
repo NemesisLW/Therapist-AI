@@ -1,18 +1,14 @@
 import { useState } from "react";
 import Head from "next/head";
 import { Snackbar } from "@mui/material";
-
-import { Helmet } from "react-helmet";
-import Script from "next/script";
-
-// const logo = require("logo.png");
+import Typewriter from "typewriter-effect";
 
 const Home = () => {
-  const [ask, setAsk] = useState("");
-
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [address, setAddress] = useState("");
+
+  const [ask, setAsk] = useState("");
 
   //API Call
   const [apiOutput, setApiOutput] = useState("");
@@ -32,7 +28,6 @@ const Home = () => {
 
     const data = await response.json();
     const { output } = data;
-
     console.log("OpenAI replied....", output.text);
 
     setApiOutput(`${output.text}`);
@@ -56,29 +51,27 @@ const Home = () => {
             <div className="animation">
               <span className="first">Therapist</span>
               <span className="slide">
-                <span className="second">.AI</span>
+                <span className="second">AI</span>
               </span>
             </div>
           </div>
         </div>
       </div>
+
       <div className="containerc">
         <div className="header-subtitle">
-          <div className="wrapper">
-            <ul className="dynamic-txts">
-              <li>
-                <span>Your mental health superhero, always by your side</span>
-              </li>
-              <li>
-                <span>Are You feeling too depressed and hopeless?</span>
-              </li>
-              <li>
-                <span>
-                  Our Therapist.Ai is always here to support and help You.
-                </span>
-              </li>
-            </ul>
-          </div>
+          <Typewriter
+            options={{
+              strings: [
+                "Your mental health superhero, always by your side",
+                "Are You feeling too depressed and hopeless?",
+                "Our Therapist.ai is always here to support and help You.",
+              ],
+              autoStart: true,
+              loop: true,
+            }}
+          />
+
           <div className="prompt-container">
             <textarea
               placeholder="What's been troubling you? Let us help you feel better!"
@@ -100,7 +93,7 @@ const Home = () => {
               </a>
             </div>
             {/* Output */}
-            {apiOutput && (
+            {!apiOutput && (
               <div className="output">
                 <div className="output-header-container">
                   <div className="output-header">
@@ -109,6 +102,36 @@ const Home = () => {
                 </div>
                 <div className="output-content">
                   <p>{apiOutput}</p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    pellentesque, ipsum sit amet blandit consequat, dolor urna
+                    consequat neque, sed rhoncus lacus erat in ligula.
+                    Pellentesque habitant morbi tristique senectus et netus et
+                    malesuada fames ac turpis egestas. Nulla et posuere purus.
+                    Ut nec elit ornare, imperdiet metus eu, fermentum orci.
+                    Etiam nibh ligula, imperdiet non erat nec, suscipit aliquam
+                    neque. Nulla ut luctus purus. Curabitur laoreet sed metus
+                    sit amet pulvinar. Nunc venenatis neque et velit laoreet, id
+                    lobortis nisl mollis. Curabitur eleifend ipsum gravida elit
+                    dictum varius. Morbi vitae felis ultrices, interdum nisl
+                    vel, auctor dui. Sed malesuada vel diam semper aliquam.
+                    Aenean bibendum massa eu felis sollicitudin posuere. Ut
+                    varius pretium quam sed vestibulum. Vestibulum ultricies ex
+                    in eros scelerisque, ut dapibus nibh ornare. Morbi nisi
+                    neque, feugiat vel imperdiet in, lobortis et orci. Maecenas
+                    mattis pharetra auctor. Morbi nulla erat, consequat cursus
+                    risus et, venenatis tempor felis. In lobortis, velit id
+                    faucibus convallis, turpis magna rutrum nunc, interdum
+                    volutpat erat sapien quis tortor. Integer molestie augue a
+                    varius luctus. Proin lobortis neque nec odio maximus
+                    bibendum. Nulla facilisi. Suspendisse vitae varius nisl.
+                    Donec pellentesque, erat quis feugiat consectetur, metus
+                    odio euismod dui, eget eleifend sem enim molestie lacus.
+                    Phasellus sit amet neque eget odio pretium volutpat. Nulla
+                    massa tortor, suscipit non consectetur vel, porta id turpis.
+                    Cras sed mollis magna, a lacinia leo. Morbi vitae ante
+                    ornare, placerat nisi a, porttitor nisl.
+                  </p>
                 </div>
               </div>
             )}
