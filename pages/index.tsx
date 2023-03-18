@@ -64,8 +64,8 @@ const Home = () => {
             options={{
               strings: [
                 "Your mental health superhero, always by your side",
-                "Are You feeling too depressed and hopeless?",
-                "Our Therapist.ai is always here to support and help You.",
+                "Are you feeling the blues?",
+                "Therapist.ai got your back.",
               ],
               autoStart: true,
               loop: true,
