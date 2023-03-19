@@ -16,6 +16,7 @@ const Home = () => {
 
   const [apiOutput, setApiOutput] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [render, setRender] = useState(false);
 
   // callGenerateEndpoint - provides the API with user input and generate output.
 
@@ -39,6 +40,7 @@ const Home = () => {
 
     setApiOutput(solutions);
     console.log(apiOutput);
+    setRender(true);
     setIsGenerating(false);
   };
 
@@ -102,7 +104,7 @@ const Home = () => {
             </div>
 
             {/* Output */}
-            {apiOutput && (
+            {render && (
               <div className="output">
                 <div className="output-header-container">
                   <div className="output-header">
