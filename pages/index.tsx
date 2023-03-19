@@ -100,6 +100,7 @@ const Home = () => {
                 </div>
               </a>
             </div>
+
             {/* Output */}
             {apiOutput && (
               <div className="output">
