@@ -1,18 +1,23 @@
 import { useState } from "react";
 import Head from "next/head";
-import { Snackbar } from "@mui/material";
 import Typewriter from "typewriter-effect";
 
 const Home = () => {
+  // Perosonalized Data for better results
+
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [address, setAddress] = useState("");
 
+  // Base user input for API call
   const [ask, setAsk] = useState("");
 
-  //API Call
+  // API Call
+
   const [apiOutput, setApiOutput] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
+
+  // callGenerateEndpoint - provides the API with user input and generate output.
 
   const callGenerateEndpoint = async () => {
     setIsGenerating(true);
@@ -28,7 +33,7 @@ const Home = () => {
 
     const data = await response.json();
     const { output } = data;
-    console.log("OpenAI replied....", typeof output);
+    console.log("OpenAI replied....");
 
     let solutions = JSON.parse(output);
 
@@ -119,7 +124,7 @@ const Home = () => {
 
           <div className="badge-container grow">
             <a
-              href="https://twitter.com/Arghyad18"
+              href="https://github.com/NemesisLW/Therapist-AI"
               target="_blank"
               rel="noreferrer"
             >

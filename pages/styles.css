@@ -337,6 +337,7 @@ textarea {
 .loading {
   opacity: 0.7;
   cursor: default;
+  color: #fff;
 }
 
 .badge-container {
