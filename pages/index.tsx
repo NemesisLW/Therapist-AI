@@ -11,7 +11,7 @@ const Home = () => {
   const [ask, setAsk] = useState("");
 
   //API Call
-  const [apiOutput, setApiOutput] = useState("");
+  const [apiOutput, setApiOutput] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
 
   const callGenerateEndpoint = async () => {
@@ -28,9 +28,12 @@ const Home = () => {
 
     const data = await response.json();
     const { output } = data;
-    console.log("OpenAI replied....", output.text);
+    console.log("OpenAI replied....", typeof output);
 
-    setApiOutput(`${output.text}`);
+    let solutions = JSON.parse(output);
+
+    setApiOutput(solutions);
+    console.log(apiOutput);
     setIsGenerating(false);
   };
 
@@ -93,45 +96,22 @@ const Home = () => {
               </a>
             </div>
             {/* Output */}
-            {!apiOutput && (
+            {apiOutput && (
               <div className="output">
                 <div className="output-header-container">
                   <div className="output-header">
-                    <h3>Output</h3>
+                    <h3>Probable Solutions</h3>
                   </div>
                 </div>
                 <div className="output-content">
-                  <p>{apiOutput}</p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    pellentesque, ipsum sit amet blandit consequat, dolor urna
-                    consequat neque, sed rhoncus lacus erat in ligula.
-                    Pellentesque habitant morbi tristique senectus et netus et
-                    malesuada fames ac turpis egestas. Nulla et posuere purus.
-                    Ut nec elit ornare, imperdiet metus eu, fermentum orci.
-                    Etiam nibh ligula, imperdiet non erat nec, suscipit aliquam
-                    neque. Nulla ut luctus purus. Curabitur laoreet sed metus
-                    sit amet pulvinar. Nunc venenatis neque et velit laoreet, id
-                    lobortis nisl mollis. Curabitur eleifend ipsum gravida elit
-                    dictum varius. Morbi vitae felis ultrices, interdum nisl
-                    vel, auctor dui. Sed malesuada vel diam semper aliquam.
-                    Aenean bibendum massa eu felis sollicitudin posuere. Ut
-                    varius pretium quam sed vestibulum. Vestibulum ultricies ex
-                    in eros scelerisque, ut dapibus nibh ornare. Morbi nisi
-                    neque, feugiat vel imperdiet in, lobortis et orci. Maecenas
-                    mattis pharetra auctor. Morbi nulla erat, consequat cursus
-                    risus et, venenatis tempor felis. In lobortis, velit id
-                    faucibus convallis, turpis magna rutrum nunc, interdum
-                    volutpat erat sapien quis tortor. Integer molestie augue a
-                    varius luctus. Proin lobortis neque nec odio maximus
-                    bibendum. Nulla facilisi. Suspendisse vitae varius nisl.
-                    Donec pellentesque, erat quis feugiat consectetur, metus
-                    odio euismod dui, eget eleifend sem enim molestie lacus.
-                    Phasellus sit amet neque eget odio pretium volutpat. Nulla
-                    massa tortor, suscipit non consectetur vel, porta id turpis.
-                    Cras sed mollis magna, a lacinia leo. Morbi vitae ante
-                    ornare, placerat nisi a, porttitor nisl.
-                  </p>
+                  {apiOutput.map((sol, index) => {
+                    return (
+                      <div key={index}>
+                        <h2>{sol.solution}</h2>
+                        <p>{sol.description}</p>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
