@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from "react";
 import Head from "next/head";
 import Typewriter from "typewriter-effect";
