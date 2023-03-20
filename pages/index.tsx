@@ -8,14 +8,16 @@ import attach from "../assets/attach.svg";
 
 const Home = () => {
   // Perosonalized Data for better results
-  // const [age, setAge] = useState("");
-  // const [gender, setGender] = useState("");
-  // const [address, setAddress] = useState("");
+
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [address, setAddress] = useState("");
 
   // Base user input for API call
   const [ask, setAsk] = useState("");
 
   // API Call
+
   const [apiOutput, setApiOutput] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [render, setRender] = useState(false);
@@ -26,7 +28,6 @@ const Home = () => {
   // const [updated, setUpdated] = useState(message);
 
   const [msgListOfuser, setmsgListOfuser] = useState([]);
-  const [msgListOfbot, setmsgListOfbot] = useState([]);
   const handleChange = (event) => {
     setMessage(event.target.value);
   };
@@ -35,6 +36,7 @@ const Home = () => {
     // 👇 "message" stores input field value
     e.preventDefault();
     // setUpdated(message);
+    console.log(message);
     // setmsgListOfuser(...msgListOfuser, updated);
     setmsgListOfuser((msgListOfuser) => [...msgListOfuser, message]);
     setMessage("");
@@ -42,11 +44,11 @@ const Home = () => {
   };
 
   // callGenerateEndpoint - provides the API with user input and generate output.
+
   const callGenerateEndpoint = async () => {
     setIsGenerating(true);
 
     console.log("Calling OpenAI...");
-
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: {
@@ -60,14 +62,6 @@ const Home = () => {
     console.log("OpenAI replied....");
 
     let solutions = JSON.parse(output);
-
-    const fallbackResponse = await fetch("/api/fallbackgenerate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ask }),
-    });
 
     setApiOutput(solutions);
     console.log(apiOutput);
@@ -207,6 +201,23 @@ const Home = () => {
 							</div>
 						</div> */}
 
+            {/* user msgs goes here */}
+            {/* <div className="mainchat"> */}
+            <div className="mainchatin">
+              <div className="chatbox">
+                {msgListOfuser.map((eachMsg) => {
+                  return (
+                    <>
+                      <div className="message my_msg">
+                        <p>{eachMsg}</p>
+                      </div>
+                    </>
+                  );
+                })}
+              </div>
+            </div>
+            {/* </div> */}
+
             {/* <form className="mainchatin"> */}
             <div className="mainchat">
               <div className="mainchatin">
@@ -214,7 +225,7 @@ const Home = () => {
               </div>
             </div>
             <div className="sendout">
-              <div className="sendin">
+              <form className="sendin">
                 <div className="mes">
                   <input
                     className="textmsg"
@@ -247,7 +258,7 @@ const Home = () => {
                     height="30px"
                   />
                 </button>
-              </div>
+              </form>
             </div>
             {/* </form> */}
           </div>
