@@ -4,8 +4,8 @@ import Head from "next/head";
 import Typewriter from "typewriter-effect";
 import Redir from "../pages/api/chatroomLink";
 import Image from "next/image";
-import send from "../assets/sendmes.svg";
-import attach from "../assets/attach.svg";
+import send from "../public/sendmes.svg";
+import attach from "../public/attach.svg";
 
 const Home = () => {
   // Perosonalized Data for better results

@@ -25,7 +25,7 @@ body {
   display: flex;
   place-content: center flex-start;
   align-items: center;
-  background-image: url("../public/therapybg.png");
+  background-image: url("/therapybg.png");
   background-size: cover;
   flex-flow: column nowrap;
   gap: 10px;
