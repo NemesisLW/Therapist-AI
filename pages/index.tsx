@@ -18,6 +18,7 @@ const Home = () => {
   // API Call
 
   const [apiOutput, setApiOutput] = useState([]);
+  const [fallbackOutput, setfallbackOutput] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [render, setRender] = useState(false);
 
@@ -79,7 +80,7 @@ const Home = () => {
 
       const fallbackdata = await fallbackresponse.json();
       const { output } = fallbackdata;
-      setApiOutput(output);
+      setfallbackOutput(output);
     }
 
     setRender(true);
@@ -161,6 +162,7 @@ const Home = () => {
                       </div>
                     );
                   })}
+                  <p>{fallbackOutput}</p>
                 </div>
               </div>
             )}
