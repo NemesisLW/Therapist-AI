@@ -28,4 +28,4 @@ User:`;
   res.status(200).json({ output: basePromptOutput });
 };
 
-export default generateAction;
+export default generatefallbackAction;
