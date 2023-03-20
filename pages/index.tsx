@@ -62,18 +62,26 @@ const Home = () => {
     const { output } = data;
     console.log("OpenAI replied....");
 
-    let solutions = JSON.parse(output);
+    try {
+      // parsing the JSON formatted output of "solutions" and "description"
+      let solutions = JSON.parse(output);
+      setApiOutput(solutions);
+    } catch (error) {
+      // Fallback Text Output Generate Endpoint
 
-    const fallbackresponse = await fetch("/api/fallbackgenerate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ask }),
-    });
+      const fallbackresponse = await fetch("/api/fallbackgenerate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ask }),
+      });
 
-    setApiOutput(solutions);
-    console.log(apiOutput);
+      const fallbackdata = await fallbackresponse.json();
+      const { output } = fallbackdata;
+      setApiOutput(output);
+    }
+
     setRender(true);
     setIsGenerating(false);
   };

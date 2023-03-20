@@ -116,7 +116,6 @@ body {
             -webkit-background-clip: text;
     background-position-x:0%;
   }
-
   25%{
     background: linear-gradient(to right, #ff6b08,
                                 #cf23cf, #eedd44, #f32170);
