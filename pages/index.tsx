@@ -8,10 +8,9 @@ import attach from "../assets/attach.svg";
 
 const Home = () => {
   // Perosonalized Data for better results
-
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [address, setAddress] = useState("");
+  // const [age, setAge] = useState("");
+  // const [gender, setGender] = useState("");
+  // const [address, setAddress] = useState("");
 
   // Base user input for API call
   const [ask, setAsk] = useState("");
@@ -27,7 +26,10 @@ const Home = () => {
 
   // const [updated, setUpdated] = useState(message);
 
+  // Storing Chat messages
   const [msgListOfuser, setmsgListOfuser] = useState([]);
+  const [msgListOfBot, setmsgListOfBot] = useState([]);
+
   const handleChange = (event) => {
     setMessage(event.target.value);
   };
@@ -44,7 +46,6 @@ const Home = () => {
   };
 
   // callGenerateEndpoint - provides the API with user input and generate output.
-
   const callGenerateEndpoint = async () => {
     setIsGenerating(true);
 
@@ -62,6 +63,14 @@ const Home = () => {
     console.log("OpenAI replied....");
 
     let solutions = JSON.parse(output);
+
+    const fallbackresponse = await fetch("/api/fallbackgenerate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ask }),
+    });
 
     setApiOutput(solutions);
     console.log(apiOutput);
@@ -216,6 +225,23 @@ const Home = () => {
                 })}
               </div>
             </div>
+
+            {/* user msgs goes here */}
+            {/* <div className="mainchat"> */}
+            <div className="mainchatin">
+              <div className="chatbox">
+                {msgListOfBot.map((eachMsg) => {
+                  return (
+                    <>
+                      <div className="message friend_msg">
+                        <p>{eachMsg}</p>
+                      </div>
+                    </>
+                  );
+                })}
+              </div>
+            </div>
+
             {/* </div> */}
 
             {/* <form className="mainchatin"> */}
