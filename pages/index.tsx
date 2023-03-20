@@ -2,6 +2,9 @@ import { useState } from "react";
 import Head from "next/head";
 import Typewriter from "typewriter-effect";
 import Redir from "../pages/api/chatroomLink";
+import Image from "next/image";
+import send from "../assets/sendmes.svg";
+import attach from "../assets/attach.svg";
 
 const Home = () => {
   // Perosonalized Data for better results
@@ -52,8 +55,9 @@ const Home = () => {
   return (
     <div className="root">
       <Head>
+        <meta name="viewport" content="width=device-width initial-scale=1.0" />
         <title>
-          DocCompanion - Your mental health superhero, always by your side
+          Therapist.ai - Your mental health superhero, always by your side
         </title>
       </Head>
       <div className="bgr">
@@ -124,7 +128,6 @@ const Home = () => {
             )}
             {/* <Redir user={user} /> */}
           </div>
-
           <div className="badge-container grow">
             <a
               href="https://github.com/NemesisLW/Therapist-AI"
@@ -135,6 +138,76 @@ const Home = () => {
                 <p>Identity Crisis</p>
               </div>
             </a>
+          </div>
+        </div>
+
+        <div className="chatui">
+          <div className="chat">
+            <div className="newchat">
+              <p className="up">That friend</p>
+              <p className="down">Active 1.58 PM,Sat, Mar 18,2023</p>
+            </div>
+            <div className="mainchat">
+              <div className="mainchatin">
+                <div className="chatbox">
+                  <div className="message my_msg">
+                    <p>
+                      Hi <br />
+                      <span>12:18</span>
+                    </p>
+                  </div>
+                  <div className="message friend_msg">
+                    <p>
+                      Hey <br />
+                      <span>12:18</span>
+                    </p>
+                  </div>
+                  <div className="message my_msg">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+                      <br />
+                      <span>12:15</span>
+                    </p>
+                  </div>
+                  <div className="message friend_msg">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+                      <br />
+                      <span>12:15</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="sendout">
+              <div className="sendin">
+                <div className="mes">
+                  <input
+                    className="textmsg"
+                    type="text"
+                    placeholder="Type a Message"
+                  ></input>
+                </div>
+                <div className="file">
+                  <Image
+                    className="attach"
+                    src={attach}
+                    alt="Picture of the author"
+                    width="30px"
+                    height="30px"
+                  />
+                </div>
+                <div className="send">
+                  <Image
+                    className="sendmsg"
+                    src={send}
+                    alt="Picture of the author"
+                    width="30px"
+                    height="30px"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
