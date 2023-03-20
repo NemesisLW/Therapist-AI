@@ -2,10 +2,15 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
+@font-face {
+  font-family: "CalSans";
+  src: url(/fonts/CalSans-SemiBold.woff) format("woff");
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif, "CalSans";
   overflow: hidden;
 }
 
@@ -709,11 +714,6 @@ textarea {
   100% {
     transform: translateX(0%);
   }
-}
-
-@font-face {
-  font-family: "CalSans";
-  src: url(../assets/CalSans-SemiBold.woff) format("woff");
 }
 
 .wrapper {
