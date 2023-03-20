@@ -201,19 +201,22 @@ const Home = () => {
 							</div>
 						</div> */}
 
-
 						{/* user msgs goes here */}
-
-
-						{msgListOfuser.map((eachMsg) => {
-							return (
-								<div className="message my_msg">
-									<p>
-										{eachMsg}
-									</p>
-								</div>
-							);
-						})}
+						{/* <div className="mainchat"> */}
+						<div className="mainchatin">
+							<div className="chatbox">
+								{msgListOfuser.map((eachMsg) => {
+									return (
+										<>
+											<div className="message my_msg">
+												<p>{eachMsg}</p>
+											</div>
+										</>
+									);
+								})}
+							</div>
+						</div>
+						{/* </div> */}
 
 						{/* <form className="mainchatin"> */}
 						<div className="mainchat">
@@ -222,7 +225,7 @@ const Home = () => {
 							</div>
 						</div>
 						<div className="sendout">
-							<div className="sendin">
+							<form className="sendin">
 								<div className="mes">
 									<input
 										className="textmsg"
@@ -255,7 +258,7 @@ const Home = () => {
 										height="30px"
 									/>
 								</button>
-							</div>
+							</form>
 						</div>
 						{/* </form> */}
 					</div>
