@@ -207,26 +207,6 @@ const Home = () => {
 							</div>
 						</div> */}
 
-            {/* user msgs goes here */}
-
-            {msgListOfuser.map((eachMsg) => {
-              return (
-                <div className="message my_msg">
-                  <p>{eachMsg}</p>
-                </div>
-              );
-            })}
-
-            {/* Bot msgs goes here */}
-
-            {msgListOfbot.map((eachMsg) => {
-              return (
-                <div className="message friend_msg">
-                  <p>{eachMsg}</p>
-                </div>
-              );
-            })}
-
             {/* <form className="mainchatin"> */}
             <div className="mainchat">
               <div className="mainchatin">
