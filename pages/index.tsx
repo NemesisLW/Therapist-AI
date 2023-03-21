@@ -155,11 +155,19 @@ const Home = () => {
 					</div>
 				</div>
 
+<<<<<<< HEAD
 				{/* ChatBot Component */}
 				{render && <Chat />}
 			</div>
 		</div>
 	);
+=======
+        {/* ChatBot Component */}
+        {!render && <Chat />}
+      </div>
+    </div>
+  );
+>>>>>>> b5e2e103d32810552c6bc24b65d585305bdcecaf
 };
 
 export default Home;
