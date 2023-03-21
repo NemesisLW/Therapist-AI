@@ -140,7 +140,6 @@ const Home = () => {
                 </div>
               </div>
             )}
-            {/* <Redir user={user} /> */}
           </div>
           <div className="badge-container grow">
             <a
@@ -156,7 +155,7 @@ const Home = () => {
         </div>
 
         {/* ChatBot Component */}
-        {!render && <Chat />}
+        {render && <Chat />}
       </div>
     </div>
   );
