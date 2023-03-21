@@ -3,9 +3,7 @@ import { useState } from "react";
 import Head from "next/head";
 import Typewriter from "typewriter-effect";
 import Redir from "../pages/api/chatroomLink";
-import Image from "next/image";
-import send from "../public/sendmes.svg";
-import attach from "../public/attach.svg";
+import Chat from "../components/Chat";
 
 const Home = () => {
 	// Perosonalized Data for better results
@@ -17,35 +15,10 @@ const Home = () => {
 	const [ask, setAsk] = useState("");
 
 	// API Call
-
 	const [apiOutput, setApiOutput] = useState([]);
 	const [fallbackOutput, setfallbackOutput] = useState("");
 	const [isGenerating, setIsGenerating] = useState(false);
 	const [render, setRender] = useState(false);
-
-	//userMessages gonna saved here
-	const [message, setMessage] = useState("");
-
-	// const [updated, setUpdated] = useState(message);
-
-	// Storing Chat messages
-	const [msgListOfuser, setmsgListOfuser] = useState([]);
-	const [msgListOfBot, setmsgListOfBot] = useState([]);
-
-	const handleChange = (event) => {
-		setMessage(event.target.value);
-	};
-
-	const handleClick = (e) => {
-		// 👇 "message" stores input field value
-		e.preventDefault();
-		// setUpdated(message);
-		console.log(message);
-		// setmsgListOfuser(...msgListOfuser, updated);
-		setmsgListOfuser((msgListOfuser) => [...msgListOfuser, message]);
-		setMessage("");
-		//oldArray => [...oldArray, newElement]
-	};
 
 	// callGenerateEndpoint - provides the API with user input and generate output.
 	const callGenerateEndpoint = async () => {
@@ -182,107 +155,8 @@ const Home = () => {
 					</div>
 				</div>
 
-				<div className="chatui">
-					<div className="chat">
-						<div className="newchat">
-							<p className="up">That friend</p>
-							<p className="down">Active 1.58 PM,Sat, Mar 18,2023</p>
-						</div>
-						{/* <div className="mainchat">
-							<div className="mainchatin">
-								<div className="chatbox">
-									<div className="message my_msg">
-										<p>
-											Hi <br />
-											<span>12:18</span>
-										</p>
-									</div>
-									<div className="message friend_msg">
-										<p>
-											Hey <br />
-											<span>12:18</span>
-										</p>
-									</div>
-									<div className="message my_msg">
-										<p>
-											Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
-											<br />
-											<span>12:15</span>
-										</p>
-									</div>
-									<div className="message friend_msg">
-										<p>
-											Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
-											<br />
-											<span>12:15</span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div> */}
-
-						{/* user msgs goes here */}
-						<div className="mainchat">
-							<div className="mainchatin">
-								<div className="chatbox">
-									{msgListOfuser.map((eachMsg) => {
-										return (
-											<>
-												<div className="message my_msg">
-													<p>{eachMsg}</p>
-												</div>
-											</>
-										);
-									})}
-								</div>
-							</div>
-						</div>
-
-						{/* <form className="mainchatin"> */}
-						{/* <div className="mainchat">
-							<div className="mainchatin">
-								<div className="chatbox">{}</div>
-							</div>
-						</div> */}
-						<div className="sendout">
-							<form className="sendin">
-								<div className="mes">
-									<input
-										className="textmsg"
-										type="text"
-										id="message"
-										name="message"
-										onChange={handleChange}
-										value={message}
-									/>
-								</div>
-								<div className="file">
-									<Image
-										className="attach"
-										src={attach}
-										alt="Picture of the author"
-										width="30px"
-										height="30px"
-									/>
-								</div>
-								<button
-									className="send"
-									type="submit"
-									onClick={(e) => handleClick(e)}
-								>
-									<Image
-										className="sendmsg"
-										src={send}
-										alt="Picture of the author"
-										width="30px"
-										height="30px"
-									/>
-								</button>
-							</form>
-						</div>
-						{/* </form> */}
-					</div>
-				</div>
+				{/* ChatBot Component */}
+				{render && <Chat />}
 			</div>
 		</div>
 	);

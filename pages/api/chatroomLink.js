@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 // import "../styles.css";
 
 const Redir = () => {
+	
 	const user = {
 		username: "udit",
 		secret: "pass123",
@@ -40,7 +41,7 @@ const Redir = () => {
 				}
 			)
 			.then((r) => callback(r.data))
-			.then(() => router.push("https://www.youtube.com/"));
+			.then(() => router.push("https://therapist-ai-chat-room.netlify.app/chats"));
 	}
 
 	const handleSubmit = (e) => {
