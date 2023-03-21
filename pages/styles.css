@@ -830,20 +830,20 @@ textarea {
 	justify-content: center;
 	/*   background-color:#1e6c75; */
 	/*   filter:blur(20px); */
-	/* flex-grow: 1; */
+	flex-grow: 1;
 }
 
 .chat .sendout {
 	padding: 0px 0px;
-	height: 10%;
-	z-index: 1000;
+	height: 7%;
+	/* z-index: 1000; */
 	justify-self: flex-end;
 	position: relative;
 }
 
 .chat .sendin {
 	/* z-index: 0; */
-	/* position: absolute; */
+	position: absolute;
 	bottom: 0px;
 	height: 100%;
 	width: 100%;
@@ -954,9 +954,9 @@ textarea {
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
-	align-items: last baseline;
+	align-items: center;
 	width: 100%;
-	height: 100%;
+	/* height: 100%; */
 	overflow-x: hidden;
 }
 
@@ -978,6 +978,7 @@ textarea {
 
 .chatbox {
 	padding: 0px 30px;
+	width: 90%;
 }
 
 .message {
@@ -995,11 +996,15 @@ textarea {
 	position: relative;
 	right: 0;
 	text-align: left;
-	max-width: 70%;
-	padding: 12px;
-	background: #dcf8c8;
+	max-width: 65%;
+	/*   padding: 12px; */
+	padding-left: 2vw;
+	background: #1e6c75;
 	border-radius: 10px;
 	font-size: 0.9em;
+	margin: 0.5vw 0;
+	padding: 5px 20px;
+	color: #70e1df;
 }
 
 .message p::before {
@@ -1011,8 +1016,8 @@ textarea {
 	height: 20px;
 	background: linear-gradient(
 		135deg,
-		#dcf8c6 0%,
-		#dcf8c6 50%,
+		#1e6c75 0%,
+		#1e6c75 50%,
 		transparent 50%,
 		transparent
 	);
@@ -1030,8 +1035,9 @@ textarea {
 }
 
 .friend_msg p {
-	background: #fff;
+	background: #8db2b9;
 	text-align: left;
+	color: #103337;
 }
 
 .message.friend_msg p::before {
@@ -1043,14 +1049,14 @@ textarea {
 	height: 20px;
 	background: linear-gradient(
 		225deg,
-		#fff 0%,
-		#fff 50%,
+		#8db2b9 0%,
+		#8db2b9 50%,
 		transparent 50%,
 		transparent
 	);
 }
 
-@media (min-width: 810px) and (max-width: 1199px) {
+@media (min-width: 851px) and (max-width: 1199px) {
 	.output-content p {
 		font-size: 0.88em;
 	}
@@ -1082,11 +1088,21 @@ textarea {
 }
 
 @media (max-width: 850px) {
-	.message p {
-		transform: scale(0.8);
+	.containerc {
+		padding-bottom: 80px;
 	}
-	.message {
-		margin: -30px 0;
+	.message p {
+		/*     transform:scale(.8); */
+		font-size: 0.7em;
+		padding: 1vw;
+		padding-left: 2vw;
+		margin: 0.5vw;
+		text-align: left;
+	}
+	.message span {
+		/*     margin:-30px 0; */
+		font-size: 0.3em;
+		text-align: right;
 	}
 
 	.output {
@@ -1104,7 +1120,6 @@ textarea {
 	}
 	.sendout {
 		height: 45px !important;
-		position: relative;
 	}
 	.down {
 		font-size: 0.9em !important;
@@ -1159,6 +1174,15 @@ textarea {
 }
 
 @media (max-width: 600px) and (min-width: 300px) {
+	.message p {
+		margin: 1vw;
+		font-size: 0.7em;
+		padding: 3px 10px;
+	}
+
+	.chatbox {
+		padding: 0px 15px;
+	}
 	.Typewriter {
 		height: 50px;
 		padding: 30px 0;
@@ -1169,15 +1193,25 @@ textarea {
 	}
 
 	.chatui {
-		height: 490px;
+		height: 85vh;
 		width: 115% !important;
+	}
+	.containerc {
+		padding-bottom: 70px;
 	}
 	.sendout {
 		height: 35px !important;
-		position: relative;
+	}
+	.sendout {
+		position: sticky;
+		bottom: 10px;
+	}
+	.chatui {
+		border-radius: 20px;
 	}
 	.mainchat {
-		max-height: 71%;
+		max-height: auto !important;
+		height: auto;
 	}
 	.container {
 		max-width: 400px;
@@ -1206,6 +1240,10 @@ textarea {
       animation-iteration-count:1; */
 	}
 
+	.first,
+	.second {
+		/*     transform:scale(0.7)!important; */
+	}
 	.header-title h1 {
 		font-size: 50px;
 	}
@@ -1245,7 +1283,6 @@ textarea {
 	}
 	.send {
 		width: 35px !important;
-		/* background-color: transparent !important; */
 	}
 	.sendmsg {
 		transform: scale(0.5);
