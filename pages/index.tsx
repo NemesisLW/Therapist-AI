@@ -1,10 +1,11 @@
+// @ts-nocheck
 import { useState } from "react";
 import Head from "next/head";
 import Typewriter from "typewriter-effect";
 import Redir from "../pages/api/chatroomLink";
 import Image from "next/image";
-import send from "../assets/sendmes.svg";
-import attach from "../assets/attach.svg";
+import send from "../public/sendmes.svg";
+import attach from "../public/attach.svg";
 
 const Home = () => {
 	// Perosonalized Data for better results
@@ -17,9 +18,10 @@ const Home = () => {
 
 	// API Call
 
-	const [apiOutput, setApiOutput] = useState([]);
-	const [isGenerating, setIsGenerating] = useState(false);
-	const [render, setRender] = useState(false);
+  const [apiOutput, setApiOutput] = useState([]);
+  const [fallbackOutput, setfallbackOutput] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [render, setRender] = useState(false);
 
 	//userMessages gonna saved here
 	const [message, setMessage] = useState("");
@@ -62,21 +64,29 @@ const Home = () => {
 		const { output } = data;
 		console.log("OpenAI replied....");
 
-		let solutions = JSON.parse(output);
+    try {
+      // parsing the JSON formatted output of "solutions" and "description"
+      let solutions = JSON.parse(output);
+      setApiOutput(solutions);
+    } catch (error) {
+      // Fallback Text Output Generate Endpoint
 
-		const fallbackresponse = await fetch("/api/fallbackgenerate", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ ask }),
-		});
+      const fallbackresponse = await fetch("/api/fallbackgenerate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ask }),
+      });
 
-		setApiOutput(solutions);
-		console.log(apiOutput);
-		setRender(true);
-		setIsGenerating(false);
-	};
+      const fallbackdata = await fallbackresponse.json();
+      const { output } = fallbackdata;
+      setfallbackOutput(output);
+    }
+
+    setRender(true);
+    setIsGenerating(false);
+  };
 
 	const onUserChangeText = (event) => {
 		setAsk(event.target.value);
@@ -117,59 +127,60 @@ const Home = () => {
 						}}
 					/>
 
-					<div className="prompt-container">
-						<textarea
-							placeholder="What's been troubling you? Let us help you feel better!"
-							className="prompt-box"
-							value={ask}
-							onChange={onUserChangeText}
-						/>
-						<div className="prompt-buttons">
-							<a
-								className={
-									isGenerating ? "generate-button loading" : "generate-button"
-								}
-								onClick={callGenerateEndpoint}
-							>
-								<div className="generate">
-									{isGenerating ? <span className="loader"></span> : <p>Ask</p>}
-								</div>
-							</a>
-						</div>
-						{/* Output */}
-						{render && (
-							<div className="output">
-								<div className="output-header-container">
-									<div className="output-header">
-										<h3>Probable Solutions</h3>
-									</div>
-								</div>
-								<div className="output-content">
-									{apiOutput.map((sol, index) => {
-										return (
-											<div key={index}>
-												<h2>{sol.solution}</h2>
-												<p>{sol.description}</p>
-											</div>
-										);
-									})}
-								</div>
-							</div>
-						)}
-						{/* <Redir user={user} /> */}
-					</div>
-					<div className="badge-container grow">
-						<a
-							href="https://github.com/NemesisLW/Therapist-AI"
-							target="_blank"
-							rel="noreferrer"
-						>
-							<div className="badge">
-								<p>Identity Crisis</p>
-							</div>
-						</a>
-					</div>
-				</div>
+          <div className="prompt-container">
+            <textarea
+              placeholder="What's been troubling you? Let us help you feel better!"
+              className="prompt-box"
+              value={ask}
+              onChange={onUserChangeText}
+            />
+            <div className="prompt-buttons">
+              <a
+                className={
+                  isGenerating ? "generate-button loading" : "generate-button"
+                }
+                onClick={callGenerateEndpoint}
+              >
+                <div className="generate">
+                  {isGenerating ? <span className="loader"></span> : <p>Ask</p>}
+                </div>
+              </a>
+            </div>
+            {/* Output */}
+            {render && (
+              <div className="output">
+                <div className="output-header-container">
+                  <div className="output-header">
+                    <h3>Probable Solutions</h3>
+                  </div>
+                </div>
+                <div className="output-content">
+                  {apiOutput.map((sol, index) => {
+                    return (
+                      <div key={index}>
+                        <h2>{sol.solution}</h2>
+                        <p>{sol.description}</p>
+                      </div>
+                    );
+                  })}
+                  <p>{fallbackOutput}</p>
+                </div>
+              </div>
+            )}
+            {/* <Redir user={user} /> */}
+          </div>
+          <div className="badge-container grow">
+            <a
+              href="https://github.com/NemesisLW/Therapist-AI"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="badge">
+                <p>Identity Crisis</p>
+              </div>
+            </a>
+          </div>
+        </div>
 
 				<div className="chatui">
 					<div className="chat">

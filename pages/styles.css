@@ -2,10 +2,15 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
+@font-face {
+	font-family: "CalSans";
+	src: url(/fonts/CalSans-SemiBold.woff) format("woff");
+}
+
 body {
 	margin: 0;
 	padding: 0;
-	font-family: "Manrope", sans-serif;
+	font-family: "Manrope", sans-serif, "CalSans";
 	overflow: hidden;
 }
 
@@ -25,7 +30,7 @@ body {
 	display: flex;
 	place-content: center flex-start;
 	align-items: center;
-	background-image: url("../assets/therapybg.png");
+	background-image: url("/therapybg.png");
 	background-size: cover;
 	flex-flow: column nowrap;
 	gap: 10px;
@@ -116,7 +121,6 @@ body {
             -webkit-background-clip: text;
     background-position-x:0%;
   }
-
   25%{
     background: linear-gradient(to right, #ff6b08,
                                 #cf23cf, #eedd44, #f32170);
@@ -440,7 +444,7 @@ textarea {
 .output-content p {
 	text-align: center;
 	white-space: pre-line;
-	color: rgba(255, 255, 255, 0.5);
+	color: #ffffff;
 	padding: 20px 30px;
 	font-size: 1.1em;
 }
@@ -712,11 +716,6 @@ textarea {
 	}
 }
 
-@font-face {
-	font-family: "CalSans";
-	src: url(../assets/CalSans-SemiBold.woff) format("woff");
-}
-
 .wrapper {
 	min-width: 80%;
 	height: 100px;
@@ -830,20 +829,20 @@ textarea {
 	justify-content: center;
 	/*   background-color:#1e6c75; */
 	/*   filter:blur(20px); */
-	flex-grow: 1;
+	/* flex-grow: 1; */
 }
 
 .chat .sendout {
 	padding: 0px 0px;
-	height: 7%;
-	/* z-index: 1000; */
+	height: 10%;
+	z-index: 1000;
 	justify-self: flex-end;
 	position: relative;
 }
 
 .chat .sendin {
 	/* z-index: 0; */
-	position: absolute;
+	/* position: absolute; */
 	bottom: 0px;
 	height: 100%;
 	width: 100%;
@@ -954,9 +953,9 @@ textarea {
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
-	align-items: center;
+	align-items: last baseline;
 	width: 100%;
-	/* height: 100%; */
+	height: 100%;
 	overflow-x: hidden;
 }
 
@@ -978,7 +977,6 @@ textarea {
 
 .chatbox {
 	padding: 0px 30px;
-	width: 90%;
 }
 
 .message {
@@ -996,15 +994,11 @@ textarea {
 	position: relative;
 	right: 0;
 	text-align: left;
-	max-width: 65%;
-	/*   padding: 12px; */
-	padding-left: 2vw;
-	background: #1e6c75;
+	max-width: 70%;
+	padding: 12px;
+	background: #dcf8c8;
 	border-radius: 10px;
 	font-size: 0.9em;
-	margin: 0.5vw 0;
-	padding: 5px 20px;
-	color: #70e1df;
 }
 
 .message p::before {
@@ -1016,8 +1010,8 @@ textarea {
 	height: 20px;
 	background: linear-gradient(
 		135deg,
-		#1e6c75 0%,
-		#1e6c75 50%,
+		#dcf8c6 0%,
+		#dcf8c6 50%,
 		transparent 50%,
 		transparent
 	);
@@ -1035,9 +1029,8 @@ textarea {
 }
 
 .friend_msg p {
-	background: #8db2b9;
+	background: #fff;
 	text-align: left;
-	color: #103337;
 }
 
 .message.friend_msg p::before {
@@ -1049,14 +1042,14 @@ textarea {
 	height: 20px;
 	background: linear-gradient(
 		225deg,
-		#8db2b9 0%,
-		#8db2b9 50%,
+		#fff 0%,
+		#fff 50%,
 		transparent 50%,
 		transparent
 	);
 }
 
-@media (min-width: 851px) and (max-width: 1199px) {
+@media (min-width: 810px) and (max-width: 1199px) {
 	.output-content p {
 		font-size: 0.88em;
 	}
@@ -1088,21 +1081,11 @@ textarea {
 }
 
 @media (max-width: 850px) {
-	.containerc {
-		padding-bottom: 80px;
-	}
 	.message p {
-		/*     transform:scale(.8); */
-		font-size: 0.7em;
-		padding: 1vw;
-		padding-left: 2vw;
-		margin: 0.5vw;
-		text-align: left;
+		transform: scale(0.8);
 	}
-	.message span {
-		/*     margin:-30px 0; */
-		font-size: 0.3em;
-		text-align: right;
+	.message {
+		margin: -30px 0;
 	}
 
 	.output {
@@ -1120,6 +1103,7 @@ textarea {
 	}
 	.sendout {
 		height: 45px !important;
+		position: relative;
 	}
 	.down {
 		font-size: 0.9em !important;
@@ -1174,15 +1158,6 @@ textarea {
 }
 
 @media (max-width: 600px) and (min-width: 300px) {
-	.message p {
-		margin: 1vw;
-		font-size: 0.7em;
-		padding: 3px 10px;
-	}
-
-	.chatbox {
-		padding: 0px 15px;
-	}
 	.Typewriter {
 		height: 50px;
 		padding: 30px 0;
@@ -1193,25 +1168,15 @@ textarea {
 	}
 
 	.chatui {
-		height: 85vh;
+		height: 490px;
 		width: 115% !important;
-	}
-	.containerc {
-		padding-bottom: 70px;
 	}
 	.sendout {
 		height: 35px !important;
-	}
-	.sendout {
-		position: sticky;
-		bottom: 10px;
-	}
-	.chatui {
-		border-radius: 20px;
+		position: relative;
 	}
 	.mainchat {
-		max-height: auto !important;
-		height: auto;
+		max-height: 71%;
 	}
 	.container {
 		max-width: 400px;
@@ -1240,10 +1205,6 @@ textarea {
       animation-iteration-count:1; */
 	}
 
-	.first,
-	.second {
-		/*     transform:scale(0.7)!important; */
-	}
 	.header-title h1 {
 		font-size: 50px;
 	}
@@ -1283,6 +1244,7 @@ textarea {
 	}
 	.send {
 		width: 35px !important;
+		/* background-color: transparent !important; */
 	}
 	.sendmsg {
 		transform: scale(0.5);
