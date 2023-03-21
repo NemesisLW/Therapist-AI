@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import send from "../public/sendmes.svg";
 import attach from "../public/attach.svg";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 const Chat = () => {
   // Input Messages and storing user and bot Chat messages
@@ -48,6 +49,17 @@ const Chat = () => {
     setBotMessage("");
   };
 
+  const loadingScreen = () => (
+    <div>
+      <Player
+        autoplay
+        loop
+        src="https://assets2.lottiefiles.com/private_files/lf30_ykdoon9j.json"
+        style={{ height: "15px", width: "30px", transform: "scale(6)" }}
+      ></Player>
+    </div>
+  );
+
   return (
     <div className="chatui">
       <div className="chat">
@@ -76,7 +88,11 @@ const Chat = () => {
               {msgListOfBot.map((eachMsg, index) => {
                 return (
                   <div key={index} className="message friend_msg">
-                    <p>{eachMsg}</p>
+                    {isBotGenerating ? (
+                      <p>{loadingScreen()}</p>
+                    ) : (
+                      <p>{eachMsg}</p>
+                    )}
                   </div>
                 );
               })}

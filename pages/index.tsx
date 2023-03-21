@@ -156,7 +156,7 @@ const Home = () => {
         </div>
 
         {/* ChatBot Component */}
-        {render && <Chat />}
+        {!render && <Chat />}
       </div>
     </div>
   );
