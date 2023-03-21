@@ -28,7 +28,7 @@ const Chat = () => {
         <div className="newchat">
           <p className="up">That friend</p>
           <p className="down">
-            Here to listen, here to help - a friend who's always there for you
+            Here to listen, here to help - a friend who is always there for you
           </p>
         </div>
 
