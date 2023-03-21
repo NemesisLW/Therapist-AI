@@ -6,101 +6,101 @@ import Redir from "../pages/api/chatroomLink";
 import Chat from "../components/Chat";
 
 const Home = () => {
-  // Perosonalized Data for better results
-  // const [age, setAge] = useState("");
-  // const [gender, setGender] = useState("");
-  // const [address, setAddress] = useState("");
+	// Perosonalized Data for better results
+	// const [age, setAge] = useState("");
+	// const [gender, setGender] = useState("");
+	// const [address, setAddress] = useState("");
 
-  // Base user input for API call
-  const [ask, setAsk] = useState("");
+	// Base user input for API call
+	const [ask, setAsk] = useState("");
 
-  // API Call
-  const [apiOutput, setApiOutput] = useState([]);
-  const [fallbackOutput, setfallbackOutput] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [render, setRender] = useState(false);
+	// API Call
+	const [apiOutput, setApiOutput] = useState([]);
+	const [fallbackOutput, setfallbackOutput] = useState("");
+	const [isGenerating, setIsGenerating] = useState(false);
+	const [render, setRender] = useState(false);
 
-  // callGenerateEndpoint - provides the API with user input and generate output.
-  const callGenerateEndpoint = async () => {
-    setIsGenerating(true);
+	// callGenerateEndpoint - provides the API with user input and generate output.
+	const callGenerateEndpoint = async () => {
+		setIsGenerating(true);
 
-    console.log("Calling OpenAI...");
-    const response = await fetch("/api/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ask }),
-    });
+		console.log("Calling OpenAI...");
+		const response = await fetch("/api/generate", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ ask }),
+		});
 
-    const data = await response.json();
-    const { output } = data;
-    console.log("OpenAI replied....");
+		const data = await response.json();
+		const { output } = data;
+		console.log("OpenAI replied....");
 
-    try {
-      // parsing the JSON formatted output of "solutions" and "description"
-      let solutions = JSON.parse(output);
-      setApiOutput(solutions);
-    } catch (error) {
-      // Fallback Text Output Generate Endpoint
+		try {
+			// parsing the JSON formatted output of "solutions" and "description"
+			let solutions = JSON.parse(output);
+			setApiOutput(solutions);
+		} catch (error) {
+			// Fallback Text Output Generate Endpoint
 
-      const fallbackresponse = await fetch("/api/fallbackgenerate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ask }),
-      });
+			const fallbackresponse = await fetch("/api/fallbackgenerate", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ ask }),
+			});
 
-      const fallbackdata = await fallbackresponse.json();
-      const { output } = fallbackdata;
-      setfallbackOutput(output);
-    }
+			const fallbackdata = await fallbackresponse.json();
+			const { output } = fallbackdata;
+			setfallbackOutput(output);
+		}
 
-    setRender(true);
-    setIsGenerating(false);
-  };
+		setRender(true);
+		setIsGenerating(false);
+	};
 
-  const onUserChangeText = (event) => {
-    setAsk(event.target.value);
-  };
+	const onUserChangeText = (event) => {
+		setAsk(event.target.value);
+	};
 
-  return (
-    <div className="root">
-      <Head>
-        <meta name="viewport" content="width=device-width initial-scale=1.0" />
-        <title>
-          Therapist.ai - Your mental health superhero, always by your side
-        </title>
-      </Head>
-      <div className="bgr">
-        <div className="bgrin">
-          <div className="container">
-            <div className="animation">
-              <span className="first">Therapist</span>
-              <span className="slide">
-                <span className="second">AI</span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+	return (
+		<div className="root">
+			<Head>
+				<meta name="viewport" content="width=device-width initial-scale=1.0" />
+				<title>
+					Therapist.ai - Your mental health superhero, always by your side
+				</title>
+			</Head>
+			<div className="bgr">
+				<div className="bgrin">
+					<div className="container">
+						<div className="animation">
+							<span className="first">Therapist</span>
+							<span className="slide">
+								<span className="second">AI</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
 
-      <div className="containerc">
-        <div className="header-subtitle">
-          <Typewriter
-            options={{
-              strings: [
-                "Your mental health superhero, always by your side",
-                "Are you feeling the blues?",
-                "Therapist.ai got your back.",
-              ],
-              autoStart: true,
-              loop: true,
-            }}
-          />
+			<div className="containerc">
+				<div className="header-subtitle">
+					<Typewriter
+						options={{
+							strings: [
+								"Your mental health superhero, always by your side",
+								"Are you feeling the blues?",
+								"Therapist.ai got your back.",
+							],
+							autoStart: true,
+							loop: true,
+						}}
+					/>
 
-          <div className="prompt-container">
+        <div className="prompt-container">
             <textarea
               placeholder="What's been troubling you? Let us help you feel better!"
               className="prompt-box"
@@ -140,6 +140,7 @@ const Home = () => {
                 </div>
               </div>
             )}
+            {/* <Redir user={user} /> */}
           </div>
           <div className="badge-container grow">
             <a
@@ -154,11 +155,19 @@ const Home = () => {
           </div>
         </div>
 
+<<<<<<< HEAD
+				{/* ChatBot Component */}
+				{render && <Chat />}
+			</div>
+		</div>
+	);
+=======
         {/* ChatBot Component */}
         {render && <Chat />}
       </div>
     </div>
   );
+>>>>>>> b5e2e103d32810552c6bc24b65d585305bdcecaf
 };
 
 export default Home;
