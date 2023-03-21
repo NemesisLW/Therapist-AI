@@ -6,63 +6,64 @@ import Redir from "../pages/api/chatroomLink";
 import Image from "next/image";
 import send from "../public/sendmes.svg";
 import attach from "../public/attach.svg";
+import Chat from "../components/Chat";
 
 const Home = () => {
-	// Perosonalized Data for better results
-	// const [age, setAge] = useState("");
-	// const [gender, setGender] = useState("");
-	// const [address, setAddress] = useState("");
+  // Perosonalized Data for better results
+  // const [age, setAge] = useState("");
+  // const [gender, setGender] = useState("");
+  // const [address, setAddress] = useState("");
 
-	// Base user input for API call
-	const [ask, setAsk] = useState("");
+  // Base user input for API call
+  const [ask, setAsk] = useState("");
 
-	// API Call
+  // API Call
 
   const [apiOutput, setApiOutput] = useState([]);
   const [fallbackOutput, setfallbackOutput] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [render, setRender] = useState(false);
 
-	//userMessages gonna saved here
-	const [message, setMessage] = useState("");
+  //userMessages gonna saved here
+  const [message, setMessage] = useState("");
 
-	// const [updated, setUpdated] = useState(message);
+  // const [updated, setUpdated] = useState(message);
 
-	// Storing Chat messages
-	const [msgListOfuser, setmsgListOfuser] = useState([]);
-	const [msgListOfBot, setmsgListOfBot] = useState([]);
+  // Storing Chat messages
+  const [msgListOfuser, setmsgListOfuser] = useState([]);
+  const [msgListOfBot, setmsgListOfBot] = useState([]);
 
-	const handleChange = (event) => {
-		setMessage(event.target.value);
-	};
+  const handleChange = (event) => {
+    setMessage(event.target.value);
+  };
 
-	const handleClick = (e) => {
-		// 👇 "message" stores input field value
-		e.preventDefault();
-		// setUpdated(message);
-		console.log(message);
-		// setmsgListOfuser(...msgListOfuser, updated);
-		setmsgListOfuser((msgListOfuser) => [...msgListOfuser, message]);
-		setMessage("");
-		//oldArray => [...oldArray, newElement]
-	};
+  const handleClick = (e) => {
+    // 👇 "message" stores input field value
+    e.preventDefault();
+    // setUpdated(message);
+    console.log(message);
+    // setmsgListOfuser(...msgListOfuser, updated);
+    setmsgListOfuser((msgListOfuser) => [...msgListOfuser, message]);
+    setMessage("");
+    //oldArray => [...oldArray, newElement]
+  };
 
-	// callGenerateEndpoint - provides the API with user input and generate output.
-	const callGenerateEndpoint = async () => {
-		setIsGenerating(true);
+  // callGenerateEndpoint - provides the API with user input and generate output.
+  const callGenerateEndpoint = async () => {
+    setIsGenerating(true);
 
-		console.log("Calling OpenAI...");
-		const response = await fetch("/api/generate", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ ask }),
-		});
+    console.log("Calling OpenAI...");
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ask }),
+    });
 
-		const data = await response.json();
-		const { output } = data;
-		console.log("OpenAI replied....");
+    const data = await response.json();
+    const { output } = data;
+    console.log("OpenAI replied....");
 
     try {
       // parsing the JSON formatted output of "solutions" and "description"
@@ -88,44 +89,44 @@ const Home = () => {
     setIsGenerating(false);
   };
 
-	const onUserChangeText = (event) => {
-		setAsk(event.target.value);
-	};
+  const onUserChangeText = (event) => {
+    setAsk(event.target.value);
+  };
 
-	return (
-		<div className="root">
-			<Head>
-				<meta name="viewport" content="width=device-width initial-scale=1.0" />
-				<title>
-					Therapist.ai - Your mental health superhero, always by your side
-				</title>
-			</Head>
-			<div className="bgr">
-				<div className="bgrin">
-					<div className="container">
-						<div className="animation">
-							<span className="first">Therapist</span>
-							<span className="slide">
-								<span className="second">AI</span>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
+  return (
+    <div className="root">
+      <Head>
+        <meta name="viewport" content="width=device-width initial-scale=1.0" />
+        <title>
+          Therapist.ai - Your mental health superhero, always by your side
+        </title>
+      </Head>
+      <div className="bgr">
+        <div className="bgrin">
+          <div className="container">
+            <div className="animation">
+              <span className="first">Therapist</span>
+              <span className="slide">
+                <span className="second">AI</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-			<div className="containerc">
-				<div className="header-subtitle">
-					<Typewriter
-						options={{
-							strings: [
-								"Your mental health superhero, always by your side",
-								"Are you feeling the blues?",
-								"Therapist.ai got your back.",
-							],
-							autoStart: true,
-							loop: true,
-						}}
-					/>
+      <div className="containerc">
+        <div className="header-subtitle">
+          <Typewriter
+            options={{
+              strings: [
+                "Your mental health superhero, always by your side",
+                "Are you feeling the blues?",
+                "Therapist.ai got your back.",
+              ],
+              autoStart: true,
+              loop: true,
+            }}
+          />
 
           <div className="prompt-container">
             <textarea
@@ -182,110 +183,11 @@ const Home = () => {
           </div>
         </div>
 
-				<div className="chatui">
-					<div className="chat">
-						<div className="newchat">
-							<p className="up">That friend</p>
-							<p className="down">Active 1.58 PM,Sat, Mar 18,2023</p>
-						</div>
-						{/* <div className="mainchat">
-							<div className="mainchatin">
-								<div className="chatbox">
-									<div className="message my_msg">
-										<p>
-											Hi <br />
-											<span>12:18</span>
-										</p>
-									</div>
-									<div className="message friend_msg">
-										<p>
-											Hey <br />
-											<span>12:18</span>
-										</p>
-									</div>
-									<div className="message my_msg">
-										<p>
-											Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
-											<br />
-											<span>12:15</span>
-										</p>
-									</div>
-									<div className="message friend_msg">
-										<p>
-											Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
-											<br />
-											<span>12:15</span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div> */}
-
-						{/* user msgs goes here */}
-						<div className="mainchat">
-							<div className="mainchatin">
-								<div className="chatbox">
-									{msgListOfuser.map((eachMsg) => {
-										return (
-											<>
-												<div className="message my_msg">
-													<p>{eachMsg}</p>
-												</div>
-											</>
-										);
-									})}
-								</div>
-							</div>
-						</div>
-
-						{/* <form className="mainchatin"> */}
-						{/* <div className="mainchat">
-							<div className="mainchatin">
-								<div className="chatbox">{}</div>
-							</div>
-						</div> */}
-						<div className="sendout">
-							<form className="sendin">
-								<div className="mes">
-									<input
-										className="textmsg"
-										type="text"
-										id="message"
-										name="message"
-										onChange={handleChange}
-										value={message}
-									/>
-								</div>
-								<div className="file">
-									<Image
-										className="attach"
-										src={attach}
-										alt="Picture of the author"
-										width="30px"
-										height="30px"
-									/>
-								</div>
-								<button
-									className="send"
-									type="submit"
-									onClick={(e) => handleClick(e)}
-								>
-									<Image
-										className="sendmsg"
-										src={send}
-										alt="Picture of the author"
-										width="30px"
-										height="30px"
-									/>
-								</button>
-							</form>
-						</div>
-						{/* </form> */}
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+        {/* ChatBot Component */}
+        {!render && <Chat />}
+      </div>
+    </div>
+  );
 };
 
 export default Home;
