@@ -4,10 +4,34 @@ import send from "../public/sendmes.svg";
 import attach from "../public/attach.svg";
 
 const Chat = () => {
-  // Input Messages and storing user and bot messages
+  // Input Messages and storing user and bot Chat messages
   const [message, setMessage] = useState("");
+  const [botMessage, setBotMessage] = useState("");
   const [msgListOfuser, setmsgListOfuser] = useState([]);
   const [msgListOfBot, setmsgListOfBot] = useState([]);
+
+  // Bot API call
+  const [isBotGenerating, setIsBotGenerating] = useState(false);
+
+  // Calling Fine-tuned AI model API
+  const callGenerateEndpoint = async () => {
+    setIsBotGenerating(true);
+    console.log("Calling OpenAI...");
+    const response = await fetch("/api/chatbotgenerate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message }),
+    });
+
+    const data = await response.json();
+    const { output } = data;
+    console.log("OpenAI replied....", output.text);
+
+    setBotMessage(`${output.text}`);
+    setIsBotGenerating(false);
+  };
 
   const handleChange = (event) => {
     setMessage(event.target.value);
@@ -15,11 +39,13 @@ const Chat = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    // setUpdated(message);
-    // setmsgListOfuser(...msgListOfuser, updated);
     setmsgListOfuser((msgListOfuser) => [...msgListOfuser, message]);
     setMessage("");
-    //oldArray => [...oldArray, newElement]
+
+    // Generating Bot Reply
+    callGenerateEndpoint();
+    setmsgListOfBot((msgListOfBot) => [...msgListOfBot, botMessage]);
+    setBotMessage("");
   };
 
   return (
@@ -37,13 +63,21 @@ const Chat = () => {
         <div className="mainchat">
           <div className="mainchatin">
             <div className="chatbox">
-              {msgListOfuser.map((eachMsg) => {
+              {msgListOfuser.map((eachMsg, index) => {
                 return (
-                  <>
-                    <div className="message my_msg">
-                      <p>{eachMsg}</p>
-                    </div>
-                  </>
+                  <div key={index} className="message my_msg">
+                    <p>{eachMsg}</p>
+                  </div>
+                );
+              })}
+
+              {/* Bot msgs goes here */}
+
+              {msgListOfBot.map((eachMsg, index) => {
+                return (
+                  <div key={index} className="message friend_msg">
+                    <p>{eachMsg}</p>
+                  </div>
                 );
               })}
             </div>

@@ -3,9 +3,6 @@ import { useState } from "react";
 import Head from "next/head";
 import Typewriter from "typewriter-effect";
 import Redir from "../pages/api/chatroomLink";
-import Image from "next/image";
-import send from "../public/sendmes.svg";
-import attach from "../public/attach.svg";
 import Chat from "../components/Chat";
 
 const Home = () => {
@@ -18,35 +15,10 @@ const Home = () => {
   const [ask, setAsk] = useState("");
 
   // API Call
-
   const [apiOutput, setApiOutput] = useState([]);
   const [fallbackOutput, setfallbackOutput] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [render, setRender] = useState(false);
-
-  //userMessages gonna saved here
-  const [message, setMessage] = useState("");
-
-  // const [updated, setUpdated] = useState(message);
-
-  // Storing Chat messages
-  const [msgListOfuser, setmsgListOfuser] = useState([]);
-  const [msgListOfBot, setmsgListOfBot] = useState([]);
-
-  const handleChange = (event) => {
-    setMessage(event.target.value);
-  };
-
-  const handleClick = (e) => {
-    // 👇 "message" stores input field value
-    e.preventDefault();
-    // setUpdated(message);
-    console.log(message);
-    // setmsgListOfuser(...msgListOfuser, updated);
-    setmsgListOfuser((msgListOfuser) => [...msgListOfuser, message]);
-    setMessage("");
-    //oldArray => [...oldArray, newElement]
-  };
 
   // callGenerateEndpoint - provides the API with user input and generate output.
   const callGenerateEndpoint = async () => {
@@ -184,7 +156,7 @@ const Home = () => {
         </div>
 
         {/* ChatBot Component */}
-        {!render && <Chat />}
+        {render && <Chat />}
       </div>
     </div>
   );
