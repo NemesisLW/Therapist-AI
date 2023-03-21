@@ -9,7 +9,7 @@ module.exports = {
   async headers() {
     return [
       {
-        source: "/fonts/inter-var.woff2",
+        source: "/fonts/CalSans-SemiBold.woff",
         headers: [
           {
             key: "Cache-control",
