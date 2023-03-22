@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import send from "../public/sendmes.svg";
 import attach from "../public/attach.svg";
@@ -9,7 +9,7 @@ const Chat = () => {
   const [message, setMessage] = useState("");
   const [botMessage, setBotMessage] = useState("");
   const [msgListOfuser, setmsgListOfuser] = useState([]);
-  const [msgListOfBot, setmsgListOfBot] = useState([]);
+  const [msgListOfBot, setmsgListOfBot] = useState(["hello"]);
 
   // Bot API call
   const [isBotGenerating, setIsBotGenerating] = useState(false);
@@ -18,6 +18,7 @@ const Chat = () => {
   const callGenerateEndpoint = async () => {
     setIsBotGenerating(true);
     console.log("Calling OpenAI...");
+
     const response = await fetch("/api/chatbotgenerate", {
       method: "POST",
       headers: {
@@ -46,7 +47,7 @@ const Chat = () => {
     // Generating Bot Reply
     callGenerateEndpoint();
     setmsgListOfBot((msgListOfBot) => [...msgListOfBot, botMessage]);
-    setBotMessage("");
+    // setBotMessage("");
   };
 
   const loadingScreen = () => (
@@ -77,15 +78,24 @@ const Chat = () => {
             <div className="chatbox">
               {msgListOfuser.map((eachMsg, index) => {
                 return (
-                  <div key={index} className="message my_msg">
-                    <p>{eachMsg}</p>
+                  <div key={index}>
+                    <div className="message my_msg">
+                      <p>{eachMsg}</p>
+                    </div>
+                    <div className="message friend_msg">
+                      {isBotGenerating ? (
+                        <p>{loadingScreen()}</p>
+                      ) : (
+                        <p>{msgListOfBot[index]}</p>
+                      )}
+                    </div>
                   </div>
                 );
               })}
 
               {/* Bot msgs goes here */}
 
-              {msgListOfBot.map((eachMsg, index) => {
+              {/* {msgListOfBot.map((eachMsg, index) => {
                 return (
                   <div key={index} className="message friend_msg">
                     {isBotGenerating ? (
@@ -95,7 +105,7 @@ const Chat = () => {
                     )}
                   </div>
                 );
-              })}
+              })} */}
             </div>
           </div>
         </div>
