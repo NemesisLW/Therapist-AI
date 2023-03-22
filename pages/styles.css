@@ -556,6 +556,7 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   /* background-color: rgb(148, 99, 34); */
 }
 
