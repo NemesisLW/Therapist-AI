@@ -1169,6 +1169,7 @@ textarea {
     display: flex;
     justify-content: center;
     text-align: center;
+    padding-top: 5px;
   }
 
   .chatui {
