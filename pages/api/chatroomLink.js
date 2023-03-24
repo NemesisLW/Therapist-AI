@@ -43,7 +43,7 @@ const Redir = () => {
 // 			.then((r) => callback(r.data))
 // 			.then(() => 
 // 	router.push("https://chat-room-j.vercel.app/");
-	}
+// 	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
