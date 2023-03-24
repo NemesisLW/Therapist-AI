@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { colors } from "@mui/material";
 // import "../styles.css";
 
 const Redir = () => {
@@ -62,7 +63,7 @@ const Redir = () => {
   return (
     <div className="prompt-buttons">
       <div className="generate">
-        <h3>
+        <h3 style={{ color: "white" }}>
           <a href="https://chat-room-j.vercel.app/">Join Groups</a>
         </h3>
       </div>
