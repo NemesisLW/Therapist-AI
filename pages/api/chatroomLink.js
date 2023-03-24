@@ -62,7 +62,7 @@ const Redir = () => {
 	return (
 		<div className="prompt-buttons">
 			<div onClick={(e) => handleSubmit(e)} className="generate">
-				<h3>Join Groups</h3>
+				<h3><a href="https://chat-room-j.vercel.app/">Join Groups</a></h3>
 			</div>
 		</div>
 	);
