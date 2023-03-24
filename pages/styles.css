@@ -216,6 +216,10 @@ textarea {
   font-family: "Manrope", sans-serif;
 }
 
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
 .prompt-box:focus {
   border-color: #3fce2c;
 }
