@@ -48,7 +48,6 @@ body {
   display: flex;
   place-content: center flex-start;
   align-items: center;
-  align-self: center;
   flex: 0 0 auto;
   flex-flow: column nowrap;
   gap: 10px;
@@ -57,7 +56,6 @@ body {
   position: relative;
   width: 70%;
   gap: 64px;
-  padding-top: 5px;
 }
 
 .header {
@@ -216,12 +214,6 @@ textarea {
   font-family: "Manrope", sans-serif;
 }
 
-a:hover,
-a:visited,
-a:link,
-a:active {
-  text-decoration: none;
-}
 .prompt-box:focus {
   border-color: #3fce2c;
 }
@@ -562,7 +554,6 @@ a:active {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   /* background-color: rgb(148, 99, 34); */
 }
 
@@ -786,13 +777,6 @@ a:active {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-a:hover,
-a:visited,
-a:link,
-a:active {
-  text-decoration: none;
 }
 
 .chat .newchat {
@@ -1067,7 +1051,27 @@ a:active {
   );
 }
 
-@media (min-width: 810px) and (max-width: 1199px) {
+#prompt-buttons-id {
+  width: max-content;
+  height: max-content;
+}
+
+#prompt-container-id {
+  width: 10%;
+}
+
+.join {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#submit {
+  padding: 20px 4%;
+}
+
+@media (min-width: 850px) and (max-width: 1199px) {
   .output-content p {
     font-size: 0.88em;
   }
@@ -1095,6 +1099,14 @@ a:active {
   }
   .chatui {
     width: 85%;
+  }
+  .header-subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bgrin {
+    align-items: center;
   }
 }
 
@@ -1173,6 +1185,14 @@ a:active {
   .output-content p {
     font-size: 0.85em;
   }
+  .header-subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bgrin {
+    align-items: center;
+  }
 }
 
 @media (max-width: 600px) and (min-width: 300px) {
@@ -1183,7 +1203,6 @@ a:active {
     display: flex;
     justify-content: center;
     text-align: center;
-    padding-top: 5px;
   }
 
   .chatui {
@@ -1242,6 +1261,13 @@ a:active {
     width: 80px;
     height: 45px;
   }
+
+  #submit {
+    justify-content: center;
+    /* width: 20px; */
+    height: auto;
+  }
+
   h3 {
     text-align: center !important;
   }
