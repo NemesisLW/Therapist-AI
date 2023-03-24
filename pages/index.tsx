@@ -119,18 +119,6 @@ const Home = () => {
                 </div>
               </a>
             </div>
-            <div className="prompt-buttons">
-              <a
-                className={
-                  isGenerating ? "generate-button loading" : "generate-button"
-                }
-                onClick={callGenerateEndpoint}
-              >
-                <div className="generate">
-                  <p>Mental Models</p>
-                </div>
-              </a>
-            </div>
             {/* Output */}
             {render && (
               <div className="output">
