@@ -9,7 +9,7 @@ const Chat = () => {
   const [message, setMessage] = useState("");
   const [botMessage, setBotMessage] = useState("");
   const [msgListOfuser, setmsgListOfuser] = useState([]);
-  const [msgListOfBot, setmsgListOfBot] = useState(["hello"]);
+  const [msgListOfBot, setmsgListOfBot] = useState([]);
 
   // Bot API call
   const [isBotGenerating, setIsBotGenerating] = useState(false);
@@ -47,7 +47,7 @@ const Chat = () => {
     // Generating Bot Reply
     callGenerateEndpoint();
     setmsgListOfBot((msgListOfBot) => [...msgListOfBot, botMessage]);
-    // setBotMessage("");
+    setBotMessage("");
   };
 
   const loadingScreen = () => (
@@ -83,8 +83,9 @@ const Chat = () => {
                       <p>{eachMsg}</p>
                     </div>
                     <div className="message friend_msg">
-                      {isBotGenerating ? (
-                        <p>{loadingScreen()}</p>
+                      {console.log(msgListOfBot[index])}
+                      {msgListOfBot[index] === "" ? (
+                        <div></div>
                       ) : (
                         <p>{msgListOfBot[index]}</p>
                       )}
@@ -92,9 +93,14 @@ const Chat = () => {
                   </div>
                 );
               })}
-
+              <div className="message friend_msg">
+                {isBotGenerating ? (
+                  <p>{loadingScreen()}</p>
+                ) : (
+                  <>{botMessage === "" ? null : <p>{botMessage}</p>}</>
+                )}
+              </div>
               {/* Bot msgs goes here */}
-
               {/* {msgListOfBot.map((eachMsg, index) => {
                 return (
                   <div key={index} className="message friend_msg">

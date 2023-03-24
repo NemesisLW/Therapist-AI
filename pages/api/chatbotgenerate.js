@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-  apiKey: process.env["OPENAI_API_KEY"],
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -19,7 +19,7 @@ const generatebotAction = async (req, res) => {
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0.6,
-    stop: "\n",
+    stop: ["\n", "->"],
   });
 
   const basePromptOutput = baseCompletion.data.choices.pop();
