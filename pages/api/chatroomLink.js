@@ -41,7 +41,7 @@ const Redir = () => {
 				}
 			)
 			.then((r) => callback(r.data))
-			.then(() => router.push("https://therapist-ai-chat-room.netlify.app/chats"));
+			.then(() => router.push("https://chat-room-j.vercel.app/"));
 	}
 
 	const handleSubmit = (e) => {
