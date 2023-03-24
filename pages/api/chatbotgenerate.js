@@ -6,9 +6,9 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-// generateAction - API call to OpenAI, Prompt designed to output in JSON format.(Though Output may be inconsistent, resulting into parsing error)
+// generateBotAction - API call to fine-tuned Model.(Kinda crappy rn !)
 const generatebotAction = async (req, res) => {
-  console.log(`API: ${basePromptPrefix}${req.body.message}`);
+  console.log(`API: ${req.body.message}`);
 
   const baseCompletion = await openai.createCompletion({
     model: "curie:ft-personal-2023-03-20-12-11-15",
