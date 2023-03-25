@@ -31,7 +31,7 @@ const Redir = () => {
   function addUserToChatGroup(callback) {
     axios
       .post(
-        "https://api.chatengine.io/chats/151900/people/",
+        "https://api.chatengine.io/chats/153921/people/",
         { username: `${user.username}` },
         {
           headers: {
